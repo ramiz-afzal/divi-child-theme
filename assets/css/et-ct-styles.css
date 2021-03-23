@@ -1,0 +1,129 @@
+/* Layout styles */
+.ks_center,
+.ks_flex {
+  display: flex;
+}
+
+.ks_row_align_center {
+  flex-direction: row;
+  align-items: center;
+}
+.ks_row_justify_center {
+  flex-direction: row;
+  justify-content: center;
+}
+.ks_col_align_center {
+  flex-direction: column;
+  align-items: center;
+}
+.ks_col_justify_center {
+  flex-direction: column;
+  justify-content: center;
+}
+.ks_center {
+  align-items: center;
+  justify-content: center;
+}
+.ks_row_reverse {
+  flex-direction: row-reverse;
+}
+.ks_col_reverse {
+  flex-direction: column-reverse;
+}
+
+/* Blurbs styles */
+.ks_blurb_v_center .et_pb_blurb_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ks_blurb_v_center .et_pb_main_blurb_image {
+  margin-bottom: 0;
+}
+.ks_blurb_v_center .et_pb_module_header {
+  padding-bottom: 0;
+}
+
+/* Form styles */
+.ks_form_show_labels .et_pb_contact_form_label {
+  display: block;
+  padding-bottom: 10px;
+}
+.ks_form_hide_placeholder input::placeholder,
+.ks_form_hide_placeholder textarea::placeholder {
+  color: transparent;
+  font-size: 0px;
+}
+
+.ks_form_reset .et_pb_contact_form {
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ks_form_reset p.et_pb_contact_field {
+  padding: 0;
+}
+.ks_form_reset .et_pb_contact_field {
+  width: 100%;
+}
+.ks_form_reset .et_pb_contact_field_half {
+  width: 48.5%;
+}
+.ks_form_reset .et_contact_bottom_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  float: none;
+}
+.ks_form_reset .et_pb_contact_right {
+  text-align: left;
+  margin-right: 15px;
+  margin-bottom: 1.5%;
+}
+.ks_form_reset .et_pb_contact_submit {
+  margin-left: 0;
+  align-self: flex-start;
+}
+.ks_form_btn_right .et_contact_bottom_container {
+  justify-content: flex-end;
+}
+.ks_form_btn_full_width .et_pb_contact_right {
+  margin-right: 0;
+}
+.ks_form_btn_full_width .et_pb_contact_submit {
+  width: 100%;
+}
+
+/* Menu styles */
+.ks_menu_column div.et_pb_menu__menu,
+.ks_menu_column nav.et-menu-nav,
+.ks_menu_column ul.et-menu {
+  width: 100%;
+  margin: 0;
+}
+.ks_menu_column ul.et-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+}
+
+/* Tables styles*/
+@media (min-width: 768px) and (max-width: 980px) {
+}
+
+/* Both Mobile and Tabel and Mobile styles */
+@media (max-width: 980px) {
+  .ks_footer_menu_fix .et_pb_menu__menu {
+    display: flex;
+  }
+  .ks_footer_menu_fix .et_mobile_nav_menu {
+    display: none;
+  }
+}
