@@ -4,7 +4,7 @@ if( !class_exists('ET_CT_Input_Handler') ){
     class ET_CT_Input_Handler
     {
 
-        protected static $input_fields = array();
+        private static $input_fields = array();
 
         public function __construct()
         {
@@ -12,7 +12,7 @@ if( !class_exists('ET_CT_Input_Handler') ){
         }
 
 
-        protected static function load_input_fields()
+        private static function load_input_fields()
         {
             ET_CT_Input_Handler::$input_fields = array(
                 
@@ -24,8 +24,36 @@ if( !class_exists('ET_CT_Input_Handler') ){
                     'default'       => 'unchecked'
                 ),
                 array(
+                    'id'            => 'et_ct_child_theme_css_file',
+                    'title'         => 'Include Child theme CSS',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
                     'id'            => 'et_ct_enable_proloader',
                     'title'         => 'Enable Preloader',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_enable_duplicate_post',
+                    'title'         => 'Enable Duplicate Post',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_disable_emoji',
+                    'title'         => 'Disable Emoji',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_enable_svg_support',
+                    'title'         => 'Enable SVG Support',
                     'type'          => 'toggle',
                     'placeholder'   => false,
                     'default'       => 'unchecked'

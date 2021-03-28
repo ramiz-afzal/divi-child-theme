@@ -6,12 +6,13 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
             toggle.addEventListener('click', function () {
                 let toggleCheckBox = toggle.querySelector('input[type="checkbox"]');
-                console.log(toggleCheckBox.checked);
+
                 if (toggleCheckBox.checked) {
                     toggleCheckBox.value = 'checked'
                 } else {
                     toggleCheckBox.value = 'unchecked'
                 }
+
             }, false);
 
         });
