@@ -58,13 +58,73 @@ if( !class_exists('ET_CT_Input_Handler') ){
                     'placeholder'   => false,
                     'default'       => 'unchecked'
                 ),
+                array(
+                    'id'            => 'et_ct_disable_xml_rpc',
+                    'title'         => 'Disable XML-RPC',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_limit_post_revisions',
+                    'title'         => 'Limit Post Revisions',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_post_revision_num_count',
+                    'title'         => 'Limit To',
+                    'type'          => 'number',
+                    'placeholder'   => false,
+                    'default'       => 5,
+                    'parent'        => 'et_ct_limit_post_revisions',
+                    'parent_value'  => 'checked',
+                ),
+                array(
+                    'id'            => 'et_ct_disable_plugin_update',
+                    'title'         => 'Disable Plugin Updates',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_disable_theme_update',
+                    'title'         => 'Disable Theme Updates',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_disable_core_update',
+                    'title'         => 'Disable Core Updates',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
 
             );
         }
 
         public static function get_input_fields()
         {
-            return ET_CT_Input_Handler::$input_fields;
+            $fields = array();
+
+            foreach( ET_CT_Input_Handler::$input_fields as $field ){
+
+                if( isset( $field['parent'] ) && isset( $field['parent_value'] ) ){
+
+                    if( get_option( $field['parent'] ) !== $field['parent_value'] ){
+                        continue;
+                    }
+    
+                }
+
+                array_push( $fields, $field );
+
+            }
+
+            return $fields;
         }
 
         public static function render_field( $arguments = array() )
@@ -77,6 +137,10 @@ if( !class_exists('ET_CT_Input_Handler') ){
             
             switch( $arguments['type'] ){
                 case 'text':
+                    printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
+                break;
+                
+                case 'number':
                     printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
                 break;
 

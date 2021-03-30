@@ -169,6 +169,40 @@ if( !class_exists('ET_CT_INIT') ){
                         add_filter('wp_prepare_attachment_for_js', [ $this, 'et_ct_svg_media_thumbnails' ], 10, 3);
 
                     break;
+                    
+                    case 'et_ct_disable_xml_rpc' :
+
+                        add_filter('xmlrpc_enabled', '__return_false');
+
+                    break;
+                    
+                    case 'et_ct_limit_post_revisions' :
+
+                        add_filter( 'wp_revisions_to_keep', [ $this, 'et_ct_overide_revisions' ], 10, 2 );
+
+                    break;
+                    
+                    case 'et_ct_disable_plugin_update' :
+
+                        add_filter( 'auto_update_plugin', '__return_false' );
+
+                    break;
+                    
+                    case 'et_ct_disable_theme_update' :
+
+                        add_filter( 'auto_update_theme', '__return_false' );
+
+                    break;
+                    
+                    case 'et_ct_disable_core_update' :
+
+                        add_filter( 'automatic_updater_disabled', '__return_true' );
+                        add_filter( 'auto_update_core', '__return_false' );
+                        add_filter( 'allow_dev_auto_core_updates', '__return_false' );
+                        add_filter( 'allow_minor_auto_core_updates', '__return_false' );
+                        add_filter( 'allow_major_auto_core_updates', '__return_false' ); 
+
+                    break;
     
                 }
 
@@ -370,6 +404,13 @@ if( !class_exists('ET_CT_INIT') ){
             }
 
             return $response;
+        }
+
+
+        public function et_ct_overide_revisions( $num, $post )
+        {
+            $post_rev_limit = (int)get_option( 'et_ct_post_revision_num_count' );
+            return $post_rev_limit;
         }
 
     }
