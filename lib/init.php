@@ -145,7 +145,8 @@ if( !class_exists('ET_CT_INIT') ){
 
                     case 'et_ct_enable_proloader' :
 
-                        add_action( 'wp_body_open', [ $this, 'et_ct_insert_page_preloader' ] );
+                        // add_action( 'wp_body_open', [ $this, 'et_ct_insert_page_preloader' ] );
+                        add_action( 'wp_head', [ $this, 'et_ct_insert_page_preloader' ] );
 
                     break;
                     
@@ -212,7 +213,9 @@ if( !class_exists('ET_CT_INIT') ){
 
         public function et_ct_insert_page_preloader()
         {
+            ob_start();
             require_once ( ET_CT_PATH . '/lib/html/template/preloader.php' );
+            echo ob_get_clean();
         }
 
         public function et_ct_duplicate_post_action_handler()
