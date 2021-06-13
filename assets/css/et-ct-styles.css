@@ -32,15 +32,15 @@
 }
 
 /* Blurbs styles */
-.ks_blurb_v_center .et_pb_blurb_content {
+.ks_blurb_h_center .et_pb_blurb_content {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.ks_blurb_v_center .et_pb_main_blurb_image {
+.ks_blurb_h_center .et_pb_main_blurb_image {
   margin-bottom: 0;
 }
-.ks_blurb_v_center .et_pb_module_header {
+.ks_blurb_h_center .et_pb_module_header {
   padding-bottom: 0;
 }
 
