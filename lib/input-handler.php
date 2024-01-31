@@ -102,6 +102,20 @@ if( !class_exists('ET_CT_Input_Handler') ){
                     'placeholder'   => false,
                     'default'       => 'unchecked'
                 ),
+                array(
+                    'id'            => 'et_ct_header_scripts',
+                    'title'         => 'Header Scripts',
+                    'type'          => 'textarea',
+                    'placeholder'   => 'Add header scripts',
+                    'default'       => ''
+                ),
+                array(
+                    'id'            => 'et_ct_footer_scripts',
+                    'title'         => 'Footer Scripts',
+                    'type'          => 'textarea',
+                    'placeholder'   => 'Add Footer scripts',
+                    'default'       => ''
+                ),
 
             );
         }
@@ -160,6 +174,11 @@ if( !class_exists('ET_CT_Input_Handler') ){
                     }
                     echo '</select>';
                 break;
+                case 'textarea':
+                    printf( '<textarea rows="8" cols="100" name="%1$s" id="%1$s" placeholder="%3$s">%4$s</textarea>', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
+                break;
+
+
             }
 
         }
