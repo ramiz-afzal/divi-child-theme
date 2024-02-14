@@ -143,7 +143,7 @@ if (!class_exists('ET_CT_INIT')) {
 
                         break;
 
-                    case 'et_ct_enable_proloader':
+                    case 'et_ct_enable_preloader':
 
                         add_action('wp_head', [$this, 'et_ct_insert_page_preloader']);
 

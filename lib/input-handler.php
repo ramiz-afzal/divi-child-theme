@@ -1,6 +1,6 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit;
+<?php if (!defined('ABSPATH')) exit;
 
-if( !class_exists('ET_CT_Input_Handler') ){
+if (!class_exists('ET_CT_Input_Handler')) {
     class ET_CT_Input_Handler
     {
 
@@ -15,7 +15,7 @@ if( !class_exists('ET_CT_Input_Handler') ){
         private static function load_input_fields()
         {
             ET_CT_Input_Handler::$input_fields = array(
-                
+
                 array(
                     'id'            => 'et_ct_child_theme_js_file',
                     'title'         => 'Include Child theme JS',
@@ -31,11 +31,20 @@ if( !class_exists('ET_CT_Input_Handler') ){
                     'default'       => 'unchecked'
                 ),
                 array(
-                    'id'            => 'et_ct_enable_proloader',
+                    'id'            => 'et_ct_enable_preloader',
                     'title'         => 'Enable Preloader',
                     'type'          => 'toggle',
                     'placeholder'   => false,
                     'default'       => 'unchecked'
+                ),
+                array(
+                    'id'            => 'et_ct_preloader_color',
+                    'title'         => 'Preloader Color',
+                    'type'          => 'color',
+                    'placeholder'   => false,
+                    'default'       => '#3c3c3c',
+                    'parent'        => 'et_ct_enable_preloader',
+                    'parent_value'  => 'checked',
                 ),
                 array(
                     'id'            => 'et_ct_enable_duplicate_post',
@@ -124,65 +133,64 @@ if( !class_exists('ET_CT_Input_Handler') ){
         {
             $fields = array();
 
-            foreach( ET_CT_Input_Handler::$input_fields as $field ){
+            foreach (ET_CT_Input_Handler::$input_fields as $field) {
 
-                if( isset( $field['parent'] ) && isset( $field['parent_value'] ) ){
+                if (isset($field['parent']) && isset($field['parent_value'])) {
 
-                    if( get_option( $field['parent'] ) !== $field['parent_value'] ){
+                    if (get_option($field['parent']) !== $field['parent_value']) {
                         continue;
                     }
-    
                 }
 
-                array_push( $fields, $field );
-
+                array_push($fields, $field);
             }
 
             return $fields;
         }
 
-        public static function render_field( $arguments = array() )
+        public static function render_field($arguments = array())
         {
 
-            $value = get_option( $arguments['id'] );
-            if( ! $value ) {
+            $value = get_option($arguments['id']);
+            if (!$value) {
                 $value = $arguments['default'];
             }
-            
-            switch( $arguments['type'] ){
+
+            switch ($arguments['type']) {
                 case 'text':
-                    printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
-                break;
-                
+                    printf('<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value);
+                    break;
+
                 case 'number':
-                    printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
-                break;
+                    printf('<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value);
+                    break;
+
+                case 'color':
+                    printf('<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value);
+                    break;
 
                 case 'toggle':
                     $checked_attr = $value == 'checked' ? 'checked' : '';
                     echo '<label class="et_ct_switch">';
-                    echo '<input name="'.$arguments['id'].'" value="'.$value.'" type="checkbox" '.$checked_attr.'>';
+                    echo '<input name="' . $arguments['id'] . '" value="' . $value . '" type="checkbox" ' . $checked_attr . '>';
                     echo '<span class="et_ct_slider"></span>';
                     echo '</label>';
-                break;
+                    break;
 
                 case 'select':
-                    echo '<select name="'.$arguments['id'].'">';
-                    foreach($arguments['options'] as $option){
+                    echo '<select name="' . $arguments['id'] . '">';
+                    foreach ($arguments['options'] as $option) {
                         $selected = ($option['value'] == $value) ? 'selected' : '';
-                        echo '<option value="'.$option['value'].'" '.$selected.'>'.$option['label'].'</option>';
+                        echo '<option value="' . $option['value'] . '" ' . $selected . '>' . $option['label'] . '</option>';
                     }
                     echo '</select>';
-                break;
+                    break;
+
                 case 'textarea':
-                    printf( '<textarea rows="8" cols="100" name="%1$s" id="%1$s" placeholder="%3$s">%4$s</textarea>', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value );
-                break;
-
-
+                    printf('<textarea rows="8" cols="100" name="%1$s" id="%1$s" placeholder="%3$s">%4$s</textarea>', $arguments['id'], $arguments['type'], $arguments['placeholder'], $value);
+                    break;
             }
-
         }
-
     }
 }
 
