@@ -1,8 +1,11 @@
 <?php if (!defined('ABSPATH')) exit;
 $pre_loader_color = get_option('et_ct_preloader_color', '#3c3c3c');
-echo '<style>:root {--ks-preloader-color: ' . $pre_loader_color . ';}</style>';
 ?>
-
+<style>
+    :root {
+        --ks-preloader-color: <?= $pre_loader_color; ?>
+    }
+</style>
 <style>
     .loader-wrapper {
         position: fixed;
@@ -39,11 +42,6 @@ echo '<style>:root {--ks-preloader-color: ' . $pre_loader_color . ';}</style>';
         }
     }
 </style>
-
-<div class="loader-wrapper">
-    <div class="loader"></div>
-</div>
-
 <script>
     jQuery(document).ready(function($) {
         //Preloading animation

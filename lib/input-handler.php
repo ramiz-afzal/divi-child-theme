@@ -112,11 +112,25 @@ if (!class_exists('ET_CT_Input_Handler')) {
                     'default'       => 'unchecked'
                 ),
                 array(
+                    'id'            => 'et_ct_enable_header_scripts',
+                    'title'         => 'Enable Header Scripts',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
+                ),
+                array(
                     'id'            => 'et_ct_header_scripts',
                     'title'         => 'Header Scripts',
                     'type'          => 'textarea',
                     'placeholder'   => 'Add header scripts',
                     'default'       => ''
+                ),
+                array(
+                    'id'            => 'et_ct_enable_footer_scripts',
+                    'title'         => 'Enable Footer Scripts',
+                    'type'          => 'toggle',
+                    'placeholder'   => false,
+                    'default'       => 'unchecked'
                 ),
                 array(
                     'id'            => 'et_ct_footer_scripts',
